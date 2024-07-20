@@ -1,0 +1,44 @@
+<nav class="col-md-2 col-sm-3 bg-light sidebar">
+  <div class="sidebar-sticky">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a
+          class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}"
+          href="{% url 'dashboard' %}"
+          >Dashboard</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link {% if request.path == '/companies/' %}active{% endif %}"
+          href="{% url 'companies' %}"
+          >Companies</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link {% if request.path == '/contacts/' %}active{% endif %}"
+          href="{% url 'contacts' %}"
+          >Contacts</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link {% if request.path == '/profile/' %}active{% endif %}"
+          href="{% url 'profile' %}"
+          >Profile</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link {% if request.path == '/change-password/' %}active{% endif %}"
+          href="{% url 'change_password' %}"
+          >Change Password</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>

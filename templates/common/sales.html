@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales Data</title>
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Sales Data</h1>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Sales</th>
+          </tr>
+        </thead>
+        <tbody id="salesTableBody">
+          <!-- Data will be inserted here -->
+        </tbody></br></br>
+      </table>
+
+      <canvas id="salesChart" width="400" height="200"></canvas>
+      <pre>{{ message }}</pre>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Check if the JSON data is being rendered
+        const salesData = JSON.parse('{{ sales_data_json|escapejs }}');
+        console.log(salesData); // Debug line to check the content of salesData
+
+        const tableBody = document.getElementById('salesTableBody');
+
+        if (!salesData || salesData.length === 0) {
+          tableBody.innerHTML =
+            '<tr><td colspan="2">No sales data available</td></tr>';
+        } else {
+          const labels = salesData.map((entry) => entry.month_name);
+          const data = salesData.map((entry) => entry.sales);
+
+          // Populate the table
+          salesData.forEach((entry) => {
+            const row = `<tr><td>${entry.month_name}</td><td>${entry.sales}</td></tr>`;
+            tableBody.innerHTML += row;
+          });
+
+          // Chart setup
+          const ctx = document.getElementById('salesChart').getContext('2d');
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  label: 'Sales',
+                  data: data,
+                  backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              scales: {
+                x: {
+                  beginAtZero: true,
+                  title: {
+                    display: true,
+                    text: 'Month',
+                  },
+                },
+                y: {
+                  beginAtZero: true,
+                  title: {
+                    display: true,
+                    text: 'Sales',
+                  },
+                },
+              },
+              plugins: {
+                legend: {
+                  display: true,
+                  position: 'top',
+                },
+              },
+            },
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

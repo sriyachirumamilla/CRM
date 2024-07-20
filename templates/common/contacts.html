@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacts</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9; /* Light background color */
+        color: #333; /* Default text color */
+      }
+      .container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #ffffff; /* White background for content */
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      ul li {
+        background-color: #f1f1f1; /* Light gray for list items */
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Contact List</h1>
+      <ul>
+        {% for contact in contacts %}
+        <li>
+          <strong>Name:</strong> {{ contact.name }}<br />
+          <strong>Email:</strong> {{ contact.email }}<br />
+          <strong>Phone:</strong> {{ contact.phone_number }}<br />
+          <strong>Address:</strong> {{ contact.address }}
+        </li>
+        {% empty %}
+        <li>No contacts available.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>

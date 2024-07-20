@@ -1,0 +1,6 @@
+{% load crispy_forms_tags %}
+
+<form method="post" class="uniForm">
+  {% csrf_token %} {% crispy form template_pack='bootstrap4' %}
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

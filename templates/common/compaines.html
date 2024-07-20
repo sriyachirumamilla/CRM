@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Companies</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        padding: 20px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      ul li {
+        background-color: #ffffff;
+        margin: 10px;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-size: 16px;
+      }
+
+      ul li p {
+        margin: 5px 0;
+      }
+
+      .company-info {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Companies List</h1>
+    <ul>
+      {% for company in companies %}
+      <li>
+        <p class="company-info">Name: {{ company.name }}</p>
+        <p class="company-info">Address: {{ company.address }}</p>
+        <p class="company-info">Contact Number: {{ company.contact_number }}</p>
+      </li>
+      {% empty %}
+      <li>No companies available.</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
